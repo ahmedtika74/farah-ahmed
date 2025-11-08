@@ -217,7 +217,7 @@ export default function Index() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/Xno24NdFZiI?loop=1"
+                src="https://www.youtube.com/embed/Xno24NdFZiI?loop=1;start=27;autoplay=1"
                 title="Our Favorite Song"
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
