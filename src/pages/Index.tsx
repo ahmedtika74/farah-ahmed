@@ -214,15 +214,13 @@ export default function Index() {
           </CardHeader>
           <CardContent>
             <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg">
-              <iframe
-                width="100%"
+              <iframe 
+                width="100%" 
                 height="100%"
-                src="https://www.youtube.com/embed/Xno24NdFZiI?loop=1;start=27;autoplay=1"
-                title="Our Favorite Song"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="border-0"
-              ></iframe>
+                src="https://www.youtube.com/embed/Xno24NdFZiI?si=bHkG3ZX2fbZrSo7B&amp;start=27"
+                frameborder="0"
+                autoplay=1;
+                allowfullscreen></iframe>
             </div>
           </CardContent>
         </Card>
