@@ -12,42 +12,17 @@ export default function Index() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
-  const [timeElapsed, setTimeElapsed] = useState({
-    years: 0,
-    months: 0,
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [daysTogether, setDaysTogether] = useState(0);
 
   useEffect(() => {
-    const calculateTime = () => {
-      const now = new Date();
-      const diff = now.getTime() - anniversaryDate.getTime();
-
-      const seconds = Math.floor(diff / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
-      const days = Math.floor(hours / 24);
-      const months = Math.floor(days / 30.44);
-      const years = Math.floor(months / 12);
-
-      setTimeElapsed({
-        years: years,
-        months: months % 12,
-        days: days % 30,
-        hours: hours % 24,
-        minutes: minutes % 60,
-        seconds: seconds % 60,
-      });
-    };
-
-    calculateTime();
-    const interval = setInterval(calculateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+    if (isAuthenticated) {
+      const startDate = new Date('2025-06-07');
+      const today = new Date();
+      const diffTime = Math.abs(today.getTime() - startDate.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      setDaysTogether(diffDays);
+    }
+  }, [isAuthenticated]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,35 +96,16 @@ export default function Index() {
         </div>
 
         {/* Days Counter */}
-        <div className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-foreground mb-16">
-            Time We've Shared Together
-          </h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {[
-              { label: 'Years', value: timeElapsed.years },
-              { label: 'Months', value: timeElapsed.months },
-              { label: 'Days', value: timeElapsed.days },
-              { label: 'Hours', value: timeElapsed.hours },
-              { label: 'Minutes', value: timeElapsed.minutes },
-              { label: 'Seconds', value: timeElapsed.seconds },
-            ].map((item, index) => (
-              <div
-                key={item.label}
-                className="bg-card rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-5xl font-bold text-primary mb-2">
-                  {item.value.toString().padStart(2, '0')}
-                </div>
-                <div className="text-muted-foreground font-medium">{item.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+        <Card className="shadow-xl border-primary/20 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+          <CardContent className="pt-6">
+            <div className="text-center space-y-2">
+              <Calendar className="w-10 h-10 text-primary mx-auto" />
+              <p className="text-4xl md:text-5xl font-bold text-primary">{daysTogether}</p>
+              <p className="text-lg text-muted-foreground">Days of Love & Happiness</p>
+              <p className="text-sm text-muted-foreground">Since June 7, 2025</p>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Photo */}
 <Card className="p-8 bg-card/80 backdrop-blur-sm border-romantic-border animate-fade-in-delay-2">
