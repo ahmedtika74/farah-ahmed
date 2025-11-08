@@ -214,7 +214,7 @@ export default function Index() {
           </CardHeader>
           <CardContent>
             <div className="aspect-video w-full rounded-lg overflow-hidden shadow-lg">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/Xno24NdFZiI?si=bHkG3ZX2fbZrSo7B&amp;start=27" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Xno24NdFZiI?si=bHkG3ZX2fbZrSo7B&amp;start=28" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
           </CardContent>
         </Card>
