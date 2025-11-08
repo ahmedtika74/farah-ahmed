@@ -232,10 +232,10 @@ export default function Index() {
           <CardContent className="pt-6 text-center space-y-4">
             <Heart className="w-16 h-16 text-primary mx-auto animate-float" fill="currentColor" />
             <p className="text-2xl md:text-3xl font-semibold text-primary">
-              "Every moment with you is a treasure"
+              "In your eyes, I found my home. In your heart, I found my love. In your soul, I found my mate. With you, I am complete."
             </p>
             <p className="text-lg text-muted-foreground italic">
-              From the first day to forever, our love grows stronger
+              Forever yours, Ahmed ❤️ Farah
             </p>
           </CardContent>
         </Card>
