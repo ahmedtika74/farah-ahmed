@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Heart, Lock, Music, Calendar } from 'lucide-react';
 import couplePhoto from '@/assets/img_3781.jpg';
 
-const CORRECT_PASSWORD = 'ahmedlovefarah';
+const CORRECT_PASSWORD = 'mysoul';
 
 export default function Index() {
   const [password, setPassword] = useState('');
