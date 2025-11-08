@@ -96,16 +96,45 @@ export default function Index() {
         </div>
 
         {/* Days Counter */}
-        <Card className="shadow-xl border-primary/20 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-          <CardContent className="pt-6">
-            <div className="text-center space-y-2">
-              <Calendar className="w-10 h-10 text-primary mx-auto" />
-              <p className="text-4xl md:text-5xl font-bold text-primary">{daysTogether}</p>
-              <p className="text-lg text-muted-foreground">Days of Love & Happiness</p>
-              <p className="text-sm text-muted-foreground">Since June 7, 2025</p>
-            </div>
-          </CardContent>
-        </Card>
+const [timeElapsed, setTimeElapsed] = useState({
+    years: 0,
+    months: 0,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Set your anniversary date here
+  const anniversaryDate = new Date('2023-01-01T00:00:00');
+
+  useEffect(() => {
+    const calculateTime = () => {
+      const now = new Date();
+      const diff = now.getTime() - anniversaryDate.getTime();
+
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      const months = Math.floor(days / 30.44);
+      const years = Math.floor(months / 12);
+
+      setTimeElapsed({
+        years: years,
+        months: months % 12,
+        days: days % 30,
+        hours: hours % 24,
+        minutes: minutes % 60,
+        seconds: seconds % 60,
+      });
+    };
+
+    calculateTime();
+    const interval = setInterval(calculateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
         {/* Photo */}
 <Card className="p-8 bg-card/80 backdrop-blur-sm border-romantic-border animate-fade-in-delay-2">
