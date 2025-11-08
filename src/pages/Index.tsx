@@ -108,21 +108,38 @@ export default function Index() {
         </Card>
 
         {/* Photo */}
-        <Card className="shadow-xl border-primary/20 overflow-hidden animate-fadeIn" style={{ animationDelay: '0.4s' }}>
-          <CardContent className="p-0">
-            <div className="relative">
-              <img 
-                src={couplePhoto} 
-                alt="Ahmed and Farah" 
-                className="w-full h-auto object-cover"
+<Card className="p-8 bg-card/80 backdrop-blur-sm border-romantic-border animate-fade-in-delay-2">
+          <div className="text-center mb-6">
+            <Heart className="w-8 h-8 text-romantic-accent mx-auto mb-2" />
+            <h2 className="text-2xl font-semibold text-romantic-primary">
+              Our Precious Moments
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative overflow-hidden rounded-lg aspect-square group">
+              <img
+                src={couplePhoto}
+                alt="Ahmed and Farah"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent flex items-end justify-center pb-6">
-                <p className="text-2xl font-semibold text-primary drop-shadow-lg">
-                  Forever Together ❤️
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <p className="text-white text-lg font-medium">
+                  Together Forever ❤️
                 </p>
               </div>
             </div>
-          </CardContent>
+            <div className="flex items-center justify-center p-8 rounded-lg bg-romantic-accent/10">
+              <div className="text-center space-y-4">
+                <Heart className="w-16 h-16 text-romantic-accent mx-auto animate-pulse-slow" />
+                <p className="text-lg text-romantic-primary font-medium">
+                  "Every moment with you is a treasure"
+                </p>
+                <p className="text-romantic-secondary">
+                  More memories to come...
+                </p>
+              </div>
+            </div>
+          </div>
         </Card>
 
         {/* Music Player */}
