@@ -158,9 +158,9 @@ export default function Index() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/r4BFkJoUMIw?autoplay=1&loop=1&playlist=r4BFkJoUMIw"
+                src="https://www.youtube.com/embed/r4BFkJoUMIw?loop=1&playlist=r4BFkJoUMIw"
                 title="Our Favorite Song"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="border-0"
               ></iframe>
