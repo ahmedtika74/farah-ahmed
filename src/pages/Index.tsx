@@ -27,32 +27,59 @@ const anniversaryDate = new Date("2025-06-07T00:00:00");
 useEffect(() => {
   if (!isAuthenticated) return;
 
+  // Days Together (calendar accurate)
   const today = new Date();
-  
-  // Days Together
-  const diffTime = Math.abs(today - anniversaryDate);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffDays = Math.floor((today - anniversaryDate) / (1000 * 60 * 60 * 24));
   setDaysTogether(diffDays);
 
-  // Live time elapsed counter
   const calculateTime = () => {
     const now = new Date();
-    const diff = now - anniversaryDate;
 
-    const seconds = Math.floor(diff / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30.44); // approx
-    const years = Math.floor(months / 12);
+    let years = now.getFullYear() - anniversaryDate.getFullYear();
+    let months = now.getMonth() - anniversaryDate.getMonth();
+    let days = now.getDate() - anniversaryDate.getDate();
+    let hours = now.getHours() - anniversaryDate.getHours();
+    let minutes = now.getMinutes() - anniversaryDate.getMinutes();
+    let seconds = now.getSeconds() - anniversaryDate.getSeconds();
+
+    // Borrow seconds
+    if (seconds < 0) {
+      seconds += 60;
+      minutes--;
+    }
+
+    // Borrow minutes
+    if (minutes < 0) {
+      minutes += 60;
+      hours--;
+    }
+
+    // Borrow hours
+    if (hours < 0) {
+      hours += 24;
+      days--;
+    }
+
+    // Borrow days
+    if (days < 0) {
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+      months--;
+    }
+
+    // Borrow months
+    if (months < 0) {
+      months += 12;
+      years--;
+    }
 
     setTimeElapsed({
       years,
-      months: months % 12,
-      days: Math.floor(days % 30.44),
-      hours: hours % 24,
-      minutes: minutes % 60,
-      seconds: seconds % 60,
+      months,
+      days,
+      hours,
+      minutes,
+      seconds,
     });
   };
 
@@ -60,7 +87,6 @@ useEffect(() => {
   const interval = setInterval(calculateTime, 1000);
 
   return () => clearInterval(interval);
-
 }, [isAuthenticated]);
   
   const handleSubmit = (e: React.FormEvent) => {
