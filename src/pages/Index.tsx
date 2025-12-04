@@ -22,43 +22,47 @@ export default function Index() {
     seconds: 0,
   });
   // Set your anniversary date here
-  const anniversaryDate = new Date('2025-06-07T00:00:00');
+const anniversaryDate = new Date("2025-06-07T00:00:00");
+
+useEffect(() => {
+  if (!isAuthenticated) return;
+
+  const today = new Date();
   
-  useEffect(() => {
-    if (isAuthenticated) {
-      const startDate = new Date('2025-06-07');
-      const today = new Date();
-      const diffTime = Math.abs(today.getTime() - startDate.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      setDaysTogether(diffDays);
-      const calculateTime = () => {
-      const now = new Date();
-      const diff = now.getTime() - anniversaryDate.getTime();
+  // Days Together
+  const diffTime = Math.abs(today - anniversaryDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  setDaysTogether(diffDays);
 
-      const seconds = Math.floor(diff / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
-      const days = Math.floor(hours / 24);
-      const months = Math.floor(days / 30.44);
-      const years = Math.floor(months / 12);
+  // Live time elapsed counter
+  const calculateTime = () => {
+    const now = new Date();
+    const diff = now - anniversaryDate;
 
-      setTimeElapsed({
-        years: years,
-        months: months % 12,
-        days: days % 30,
-        hours: hours % 24,
-        minutes: minutes % 60,
-        seconds: seconds % 60,
-      });
-    };
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30.44); // approx
+    const years = Math.floor(months / 12);
 
-    calculateTime();
-    const interval = setInterval(calculateTime, 1000);
+    setTimeElapsed({
+      years,
+      months: months % 12,
+      days: Math.floor(days % 30.44),
+      hours: hours % 24,
+      minutes: minutes % 60,
+      seconds: seconds % 60,
+    });
+  };
 
-    return () => clearInterval(interval);
-    }
-  }, [isAuthenticated]);
+  calculateTime();
+  const interval = setInterval(calculateTime, 1000);
 
+  return () => clearInterval(interval);
+
+}, [isAuthenticated]);
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === CORRECT_PASSWORD) {
